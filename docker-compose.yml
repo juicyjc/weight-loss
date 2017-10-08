@@ -1,0 +1,14 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+      - "80:5000"
+    volumes:
+      - D:\Projects\weightloss-api:/opt/weightloss-api
+    links:
+      - db:mongodb
+    container_name: weightlossapi_web_1
+  db:
+    image: mongo:3.0.2
+    container_name: weightlossapi_db_1
