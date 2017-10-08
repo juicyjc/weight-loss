@@ -21,14 +21,12 @@ def create_app(**config_overrides):
     # import blueprints
     from home.views import home_app
     # from weightloss.views import weightloss_app
-    # from app.views import app_app
-    # from store.views import store_app
+    from app.views import app_app
 
     # register blueprints
     app.register_blueprint(home_app)
     # app.register_blueprint(pet_app)
-    # app.register_blueprint(app_app)
-    # app.register_blueprint(store_app)
+    app.register_blueprint(app_app)
 
     return app
 
