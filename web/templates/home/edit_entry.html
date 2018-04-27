@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Measurements</h2>
+
+<form action="{{ url_for('home_app.entry', entry_id=entry.id) }}" method="POST">
+{{ form.csrf_token }}
+<table class="table table-striped table-nonfluid">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">{{ form.weight.label }}</th>
+      <th scope="col">{{ form.chest.label }}</th>
+      <th scope="col">{{ form.stomach.label }}</th>
+      <th scope="col">{{ form.hips.label }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ form.weight(size=5) }}</td>
+      <td>{{ form.chest(size=5) }}</td>
+      <td>{{ form.stomach(size=5) }}</td>
+      <td>{{ form.hips(size=5) }}</td>
+      <td><input class="btn btn-primary btn-sm" id="submit" name="submit" type="submit" value="Edit Entry"></td>
+    </tr>
+  </tbody>
+</table>
+</form>
+
+{% endblock %}

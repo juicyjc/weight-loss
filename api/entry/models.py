@@ -8,7 +8,8 @@ class Entry(db.Document):
     stomach = db.DecimalField(db_field="s", precision=1, rounding="ROUND_HALF_UP")
     hips = db.DecimalField(db_field="h", precision=1, rounding="ROUND_HALF_UP")
     weight = db.DecimalField(db_field="w", precision=1, rounding="ROUND_HALF_UP")
+    live = db.BooleanField(db_field="l", default=True)
 
     meta = {
-        'indexes': [('external_id', ), ('created_date', )]
+        'indexes': [('external_id', 'live'), ('created_date', 'live')]
     }

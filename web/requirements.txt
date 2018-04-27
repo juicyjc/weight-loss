@@ -1,0 +1,8 @@
+Flask==0.12.2
+Flask-Script==2.0.6
+Flask-WTF==0.14.2
+WTForms==2.1
+jsonschema==2.6.0
+requests==2.18.4
+pytz
+tzlocal

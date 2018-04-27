@@ -9,8 +9,15 @@ from app.models import App, Access
 class AppAPI(MethodView):
 
     def __init__(self):
-        if not request.json:
+        if (request.method != 'GET') and not request.json:
             abort(400)
+
+    def get(self):
+        apps = App.objects.get()
+        response = {
+            "apps": apps
+        }
+        return jsonify(response), 200
 
     def post(self):
         if not "app_id" in request.json or not "app_secret" in request.json:
@@ -34,11 +41,19 @@ class AppAPI(MethodView):
             ).save()
             return jsonify({'result': 'ok'})
 
+
 class AccessAPI(MethodView):
 
     def __init__(self):
-        if not request.json:
+        if (request.method != 'GET') and not request.json:
             abort(400)
+
+    def get(self):
+        access = Access.objects.get()
+        response = {
+            "access": access
+        }
+        return jsonify(response), 200
 
     def post(self):
         if not "app_id" in request.json or not "app_secret" in request.json:

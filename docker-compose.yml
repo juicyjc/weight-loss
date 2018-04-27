@@ -1,14 +1,40 @@
-version: '2'
+version: '3'
+
 services:
-  web:
-    build: .
+  api:
+    build: ./api
+    container_name: weightloss-api
     ports:
-      - "80:5000"
+      - "5001:5000"
     volumes:
-      - D:\Projects\weightloss-api:/opt/weightloss-api
-    links:
-      - db:mongodb
-    container_name: weightlossapi_web_1
+      - ./api:/opt/api
+    environment:
+      PYTHONBUFFERED: 1
+    networks:
+      - frontend
+      - backend
+
+  web:
+    build: ./web
+    container_name: weightloss-web
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./web:/opt/web
+    environment:
+      PYTHONBUFFERED: 1
+    networks:
+      - frontend
+
   db:
-    image: mongo:3.0.2
-    container_name: weightlossapi_db_1
+    image: mongo:latest
+    container_name: weightloss-db
+    ports:
+      - '27017:27017'
+    networks:
+      - backend
+
+networks:
+  frontend:
+  backend:
+

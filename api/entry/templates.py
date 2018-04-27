@@ -5,6 +5,7 @@ def entry_obj(entry):
         "chest":        str(entry.chest),
         "stomach":      str(entry.stomach),
         "hips":         str(entry.hips),
+        "weight":       str(entry.weight),
         "links": [
             { "rel": "self", "href": "/entries/" + entry.external_id }
         ]
