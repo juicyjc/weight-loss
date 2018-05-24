@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, current_app, render_template, request, abort, redirect, url_for
+from flask import Blueprint, jsonify, current_app, render_template, request, abort, redirect, url_for, session
 from datetime import datetime
 from decimal import Decimal
 import requests
@@ -16,6 +16,7 @@ def register_app():
     return register_app_with_api()
 
 
+@home_app.route('/entries', methods=('GET', 'POST'))
 def entries():
     headers = get_auth_headers()
     if headers:
@@ -66,10 +67,11 @@ def entry(entry_id):
         return 'APP_NOT_REGISTERED'
 
 
-@home_app.route('/set_style', methods=('GET', 'POST'))
+@home_app.route('/set_style')
 def set_style():
     style = request.args.get('style')
-    if style:
+    styles = ['superhero', 'yeti']
+    if style and style in styles:
         session['style'] = style
     return redirect(url_for('home_app.entries'))
 

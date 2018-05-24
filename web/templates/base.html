@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     {% if 'style' in session %}
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/{% session.style %}/bootstrap.min.css') }}">
+      {% set file_path = 'css/' + session['style'] + '/bootstrap.min.css' %}
+      <link rel="stylesheet" href="{{ url_for('static', filename=file_path) }}">
     {% else %}
       <link rel="stylesheet" href="{{ url_for('static', filename='css/yeti/bootstrap.min.css') }}">
     {% endif %}
@@ -29,8 +30,8 @@
               Style
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="url_for('home_app.set_style', style='Yeti')">Yeti</a>
-              <a class="dropdown-item" href="#">Superhero</a>
+              <a class="dropdown-item" href="{{ url_for('home_app.set_style', style='yeti') }}">Yeti</a>
+              <a class="dropdown-item" href="{{ url_for('home_app.set_style', style='superhero') }}">Superhero</a>
             </div>
           </li>
         </ul>
