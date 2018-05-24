@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 ## make a local directory
 RUN mkdir /opt/api
 
-# set "weightloss-api" as the working directory from which CMD, RUN, ADD references
+# set "api" as the working directory from which CMD, RUN, ADD references
 WORKDIR /opt/api
 
 # now copy all the files in this directory to /code
