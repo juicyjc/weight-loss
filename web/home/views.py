@@ -16,7 +16,6 @@ def register_app():
     return register_app_with_api()
 
 
-@home_app.route('/entries', methods=('GET', 'POST'))
 def entries():
     headers = get_auth_headers()
     if headers:
@@ -65,6 +64,14 @@ def entry(entry_id):
         return render_template('./home/edit_entry.html', entry=entry, form=form)
     else:
         return 'APP_NOT_REGISTERED'
+
+
+@home_app.route('/set_style', methods=('GET', 'POST'))
+def set_style():
+    style = request.args.get('style')
+    if style:
+        session['style'] = style
+    return redirect(url_for('home_app.entries'))
 
 
 def get_simple_headers():

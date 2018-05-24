@@ -5,7 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/yeti/bootstrap.min.css') }}">
+    {% if 'style' in session %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/{% session.style %}/bootstrap.min.css') }}">
+    {% else %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/yeti/bootstrap.min.css') }}">
+    {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Weightloss</title>
   </head>
@@ -25,7 +29,7 @@
               Style
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Yeti</a>
+              <a class="dropdown-item" href="url_for('home_app.set_style', style='Yeti')">Yeti</a>
               <a class="dropdown-item" href="#">Superhero</a>
             </div>
           </li>
